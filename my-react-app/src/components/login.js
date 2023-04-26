@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import Home from '../components/Home'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 
@@ -73,9 +73,11 @@ export default function Login() {
         e.preventDefault()
         axios.post(url+'login', form).then((res) => {
             updateMessage({...message,successMessage:res.data,errorMessage:""})
+            sessionStorage.setItem("login",true)
         }).catch((err)=>{
             if(err.response){
                 updateMessage({...message,errorMessage:err.response.data.message,successMessage:""})
+                sessionStorage.setItem('login',false)
             }
             else{
                 updateMessage({...message,errorMessage:err.message,successMessage:""})
@@ -83,6 +85,7 @@ export default function Login() {
         })
     }
     return <React.Fragment>
+       {message.successMessage? <Home/>:
         <div className="container mt-4">
             <div className='row'>
                 <div className='col-md-5 offset-md-1 '>
@@ -116,6 +119,6 @@ export default function Login() {
                 </div>
             </div>
         </div>
-
+}
     </React.Fragment>
 }
