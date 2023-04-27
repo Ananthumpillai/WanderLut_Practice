@@ -15,5 +15,17 @@ userService.login = async (phoneNumber, password) => {
     }
 }
 
+userService.register = async (data) => {
+    let userDetails = await dbModel.register(data)
+    if (userDetails === null) {
+        let err = new Error("Operation Failed")
+        err.status = 404
+        throw err
+    }
+    else {
+        return userDetails
+    }
+}
+
 
 module.exports = userService

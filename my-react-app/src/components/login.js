@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import Home from '../components/Home'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
-
-const url="http://localhost:1050/"
+import { Link, Redirect } from 'react-router-dom';
+const url = "http://localhost:1050/"
 export default function Login() {
     const [form, updateForm] = useState({
         phoneNumber: '',
@@ -16,13 +16,14 @@ export default function Login() {
     const [formValid, updateFormValid] = useState({
         phoneNumberValid: false,
         passwordValid: false,
-        buttonValid: false
+        buttonValid: false,
+        login: false
     })
-    const[message,updateMessage]=useState({
-        successMessage:"",
-        errorMessage:""
+    const [message, updateMessage] = useState({
+        successMessage: "",
+        errorMessage: ""
     })
-
+    const [register, updateRegister] = useState(false)
     let handleChange = (e) => {
         let name = e.target.name
         let value = e.target.value
@@ -69,56 +70,75 @@ export default function Login() {
         updateFormError(formErrorCopy)
         updateFormValid(formValidCopy)
     }
-    let formSubmit = (e) => {
-        e.preventDefault()
-        axios.post(url+'login', form).then((res) => {
-            updateMessage({...message,successMessage:res.data,errorMessage:""})
-            sessionStorage.setItem("login",true)
-        }).catch((err)=>{
-            if(err.response){
-                updateMessage({...message,errorMessage:err.response.data.message,successMessage:""})
-                sessionStorage.setItem('login',false)
+    let loginfun = () => {
+        axios.post(url + 'login', form).then((res) => {
+            sessionStorage.setItem("login", true)
+
+            updateMessage({ ...message, successMessage: res.data, errorMessage: "" })
+            // window.location.reload()
+         
+        }).catch((err) => {
+            if (err.response) {
+                updateMessage({ ...message, errorMessage: err.response.data.message, successMessage: "" })
             }
-            else{
-                updateMessage({...message,errorMessage:err.message,successMessage:""})
+            else {
+                updateMessage({ ...message, errorMessage: err.message, successMessage: "" })
             }
         })
     }
-    return <React.Fragment>
-       {message.successMessage? <Home/>:
-        <div className="container mt-4">
-            <div className='row'>
-                <div className='col-md-5 offset-md-1 '>
-                    <div className='card '>
-                        <h3 className='card-header text-center'>Login</h3>
-                        <div className='card-body' >
-                            <form className='form' onSubmit={formSubmit}>
-                                <div className='form-group'>
-                                    <label name="phoneNumber">Phone Number</label>
-                                    <input type='number' placeholder='eg :- +9567808039' name='phoneNumber'
-                                        onChange={handleChange} className='form-control'
-                                    ></input>
-                                    <span className='text-danger'>{formError.phoneNumberError}</span>
-                                </div>
+    let formSubmit = (e) => {
+        e.preventDefault()
+        loginfun()
+    }
 
-                                <div className='form-group'>
-                                    <label name="password">Password</label>
-                                    <input type='password' placeholder='Please enter your password' name='password'
-                                        onChange={handleChange} className='form-control'
-                                    ></input>
-                                    <span className='text-danger'>{formError.passwordError}</span>
-                                </div>
+    if (message.successMessage === true) {
+
+        return <Redirect to='/home'></Redirect>
+    }
+    else if (register) {
+        return <Redirect to='/register'></Redirect>
+    }
+    else {
 
 
+        return <React.Fragment>
+
+            <div  id='loginPage'>
+                <div className='row'>
+                    <div className='col-md-4 offset-md-3 '>
+                        <div className='card '>
+                            <h3 className='card-header text-center'>Login</h3>
+                            <div className='card-body' >
+                                <form className='form' onSubmit={formSubmit}>
+                                    <div className='form-group'>
+                                        <label name="phoneNumber">Phone Number</label>
+                                        <input type='number' placeholder='eg :- +9567808039' name='phoneNumber'
+                                            onChange={handleChange} className='form-control'
+                                        ></input>
+                                        <span className='text-danger'>{formError.phoneNumberError}</span>
+                                    </div>
+
+                                    <div className='form-group'>
+                                        <label name="password">Password</label>
+                                        <input type='password' placeholder='Please enter your password' name='password'
+                                            onChange={handleChange} className='form-control'
+                                        ></input>
+                                        <span className='text-danger'>{formError.passwordError}</span>
+                                    </div>
+
+
+                                    <br />
+                                    <button type='submit' disabled={!formValid.buttonValid} className='btn btn-primary'>Submit</button>
+                                </form>
                                 <br />
-                                <button type='submit' disabled={!formValid.buttonValid} className='btn btn-primary'>Submit</button>
-                            </form>
-                            <span className='text-danger'><b>{message.errorMessage}</b></span>
+                                <button className='btn btn-warning btn-block' onClick={() => updateRegister(true)}>Register</button>
+                                <span className='text-danger'><b>{message.errorMessage}</b></span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-}
-    </React.Fragment>
+
+        </React.Fragment>
+    }
 }
