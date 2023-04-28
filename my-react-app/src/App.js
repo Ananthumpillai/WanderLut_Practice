@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch, Link, Redirect } from "react-ro
 import { useState } from 'react';
 import Home from './components/Home';
 import Register from './components/register';
-
+import Demo from './components/demo'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HotDeals from './components/HotDeals';
 function App() {
