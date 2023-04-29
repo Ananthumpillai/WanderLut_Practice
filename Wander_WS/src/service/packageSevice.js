@@ -18,6 +18,19 @@ packageService.hotDeals=async ()=>{
     }
 }
 
+packageService.destination=async (keyword)=>{
+
+    let packages=await dbModel.destinations(keyword)
+    if(packages===null){
+        let err=new Error("Sorry we don't serve this location")
+        err.status=400
+        throw err
+    }
+    else{
+        return packages
+    }
+}
+
 
 
 module.exports=packageService

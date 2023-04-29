@@ -31,9 +31,15 @@ router.get('/hotDeals', async (req, res, next) => {
     }).catch((err) => {
         next(err)
     })
+})
 
-
-
+router.get('/searchPackages/:keyword', async (req, res, next) => {
+    let keyword = req.params.keyword
+    packageService.destination(keyword).then((data) => {
+        res.send(data)
+    }).catch((err) => {
+        next(err)
+    })
 })
 
 

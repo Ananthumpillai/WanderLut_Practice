@@ -8,6 +8,8 @@ import Register from './components/register';
 import Demo from './components/demo'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HotDeals from './components/HotDeals';
+import BookingComponent from './components/BookingComponent';
+import Packages from './components/Packages';
 function App() {
 
 
@@ -26,7 +28,7 @@ function App() {
      <div>
         {/* {sessionStorage.getItem("login")?updateLogin(true):null} */}
         <nav className='navbar navbar-expand-sm navbar-dark bg-dark'>
-          <a className="navbar-brand font-weight-bolder" href="#"><img src={logo} height='30vw' width='30vw'></img> Wander Lust</a>
+          <a className="navbar-brand font-weight-bolder" href="/"><img src={logo} height='30vw' width='30vw'></img> Wander Lust</a>
 
           <button className='navbar-toggler' type='button' data-bs-toggle="collapse" data-bs-target="#id">
             <span className='navbar-toggler-icon'></span>
@@ -63,17 +65,19 @@ function App() {
         </nav>
    
         <Switch>
-
+        <Route exact path='/' component={Home} ></Route>
           <Route exact path='/home' component={Home} ></Route>
           <Route path='/login' component={Login}></Route>
           <Route path='/register' component={Register}></Route>
            <Route path='/hotDeals' component={HotDeals}></Route>
-          {/* <Route path='/viewBookings'></Route>  */}
+              <Route path='/searchPackages/:keyword' component={Packages}></Route> 
+          <Route path='/book/:destinationId' component={BookingComponent}></Route> 
+          <Route  path='*' component={()=><Redirect to='/home'></Redirect>} ></Route>
         </Switch>
 
   </div>
       </Router> 
-      <footer className="bg-black text-center text-white-50">
+      <footer className="bg-black p-5 text-center text-white-50">
      Copyright &copy; www.eta.wanderlust.com 2018
 </footer>
     </div>

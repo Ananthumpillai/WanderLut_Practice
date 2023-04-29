@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
-import { TextField, Button, Link } from '@mui/material';
-
-
+import { TextField, Button, Link as Links } from '@mui/material';
+import BookingComponent from "./BookingComponent";
+import { Redirect, Link } from 'react-router-dom';
 
 import "primereact/resources/primereact.min.css";
 import { TabView, TabPanel } from 'primereact/tabview';
@@ -51,6 +51,8 @@ export default function HotDeals() {
     })
     const [totalCost, updateTotalCost] = useState("")
     const [endDate, updateEndDate] = useState("")
+    const [bookPage, udpateBookPage] = useState(false)
+
 
     useEffect(() => {
         fetchData()
@@ -189,8 +191,15 @@ export default function HotDeals() {
         updateFormErrors(bformError)
         updateFormValid(formValidCopy)
     }
-
-    console.log(selectedPackage);
+    if (bookPage) {
+        // return <Link to={{
+        //     pathname: "/book",
+        //     state: bookForm
+        // }}></Link>
+        let path='/book/'+ selectedPackage.destinationId
+        return <Redirect to={path}></Redirect>
+    }
+    // console.log(bookPage);
     return (
 
 
@@ -242,7 +251,7 @@ export default function HotDeals() {
                                 })}
                                 <h6>Day {selectedPackage.details.itinerary.dayWiseDetails.restDaysSightSeeing.length + 2}</h6>
                                 <p>{selectedPackage.details.itinerary.dayWiseDetails.lastDay}</p>
-                                <span className="text-danger"> **This itinerary is just a suggestion, itinerary can be modified as per requirement.<Link href="contactUs">Contact us</Link> for more details.</span>
+                                <span className="text-danger"> **This itinerary is just a suggestion, itinerary can be modified as per requirement.<Links href="contactUs">Contact us</Links> for more details.</span>
                             </dv>
                         </TabPanel>
                         <TabPanel header="Book">
@@ -263,18 +272,18 @@ export default function HotDeals() {
                                         <label className="form-label" htmlFor="includeFlight">Include Flight </label>&nbsp;
                                         <input type="checkbox" onChange={handleChange} className="form-check-input" name="includeFlight"></input>
                                     </div>
-                                   
-                                   <button type="submit" className="btn btn-primary btn-lg" disabled={!formValid.button}>Calculate Charges</button>
-                                 <div className="m-2">
-                              {totalCost?
-                                <h4 className="text-success">Your trip ends on {endDate} and you have to pay ₹ {totalCost}</h4>
-                              :
-                              <span className="text-danger">**Charges Exclude flight charges.</span>
-                              }
-                              </div>
+
+                                    <button type="submit" className="btn btn-primary btn-lg" disabled={!formValid.button}>Calculate Charges</button>
+                                    <div className="m-2">
+                                        {totalCost ?
+                                            <h4 className="text-success">Your trip ends on {endDate} and you have to pay ₹ {totalCost}</h4>
+                                            :
+                                            <span className="text-danger">**Charges Exclude flight charges.</span>
+                                        }
+                                    </div>
                                 </form>
                                 <div className="text-center">
-                                    <button className="btn btn-success"disabled={!totalCost}>Book</button> &nbsp; &nbsp; &nbsp;
+                                    <button className="btn btn-success" disabled={!totalCost} onClick={() => { udpateBookPage(true) }}>Book</button> &nbsp; &nbsp; &nbsp;
                                     <button className="btn btn-link" onClick={hideTab}>Cancel</button>
                                 </div>
                                 <span className="text-danger">{formErrorMessages.errorMsg}</span>
