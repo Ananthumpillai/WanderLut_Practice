@@ -1,7 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 
 
-export default function BookingComponent(){
 
-    return <h1>BookingComponent</h1>
+
+
+export default function BookingComponent() {
+
+  
+        return <h1>BookingComponent</h1>
 }

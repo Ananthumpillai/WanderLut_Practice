@@ -72,7 +72,7 @@ function App() {
            <Route path='/hotDeals' component={HotDeals}></Route>
               <Route path='/searchPackages/:keyword' component={Packages}></Route> 
           <Route path='/book/:destinationId' component={BookingComponent}></Route> 
-          <Route  path='*' component={()=><Redirect to='/home'></Redirect>} ></Route>
+          {/* <Route  path='*' component={()=><Redirect to='/home'></Redirect>} ></Route> */}
         </Switch>
 
   </div>

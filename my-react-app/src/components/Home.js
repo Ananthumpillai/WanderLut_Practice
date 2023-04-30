@@ -75,21 +75,21 @@ export default function Home() {
                 <div className="row">
                     <div className="col-md-4 mb-3">
                         <div className="card py-4 bg-white">
-                            <dv className="card-body">
+                            <div className="card-body">
                                 <h4 className="text-uppercase m-0">ADDRESS</h4>
                                 <hr className="my-4"></hr>
                                 <div className="small text-black-50">Qburst TVM</div>
-                            </dv>
+                            </div>
 
                         </div>
                     </div>
                     <div className="col-md-4 mb-3">
                         <div className="card py-4 bg-white">
-                            <dv className="card-body">
+                            <div className="card-body">
                                 <h4 className="text-uppercase m-0">EMAIL</h4>
                                 <hr className="my-4"></hr>
                                 <div className="small text-black-50">ananthu998@gmail.com</div>
-                            </dv>
+                            </div>
 
                         </div>
                     </div>
@@ -97,11 +97,11 @@ export default function Home() {
 
                     <div className="col-md-4 mb-3">
                         <div className="card py-4 bg-white">
-                            <dv className="card-body">
+                            <div className="card-body">
                                 <h4 className="text-uppercase m-0">PHONE</h4>
                                 <hr className="my-4"></hr>
                                 <div className="small text-black-50">+91 9567805039</div>
-                            </dv>
+                            </div>
 
                         </div>
                     </div>
