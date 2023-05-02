@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { Fieldset } from 'primereact/fieldset';
-import { Link } from 'react-router-dom'
+import { Link, Redirect, Router, withRouter } from 'react-router-dom'
+import axios from "axios";
 
-
+const url = "http://localhost:1050/"
 export default function BookingComponent(props) {
-
+    // const [searchValue, updateSearchValue] = useState(props.match.params.keyword)
     const [bookForm, updateBookForm] = useState(props.form)
 
     const [endDate, updateEndDate] = useState(props.date)
@@ -22,12 +23,8 @@ export default function BookingComponent(props) {
         noOfTravelersError: "",
         dateError: "",
     })
-    const [formValid, updateFormValid] = useState({
-        noOfTravelersValid: false,
-        dateValid: false,
-        button: true
-    })
-
+    const [cnfButton, updatecnfButton] = useState(true)
+    const [goBack, updateGoBack] = useState(false)
     let handleChange = (e) => {
         let name = e.target.name
         let value
@@ -45,28 +42,35 @@ export default function BookingComponent(props) {
         updateBookForm(formCopy)
         validateBookForm(name, value)
     }
-    useEffect(()=>{
-        calculateCharges()
 
-    },[bookForm.noOfTravelers,bookForm.includeFlight])
+
+    useEffect(() => {
+        calculateCharges()
+        console.log(formErrorMessages);
+    }, [bookForm])
 
     let validateBookForm = (name, value) => {
-        console.log("inside validate");
+
         let formErrorCopy = { ...formErrors }
-        let formValidCopy = { ...formValid }
+        let formValidCopy = cnfButton
         switch (name) {
+
             case 'noOfTravelers':
                 if (!value) {
+
                     formErrorCopy.noOfTravelersError = "This field can't be empty!"
-                    formValidCopy.noOfTravelersValid = false
+                    formValidCopy = false
+
                 }
                 else if (value < 1 || value > 5) {
                     formErrorCopy.noOfTravelersError = "No. of persons can't be more than 5 and less than 1."
-                    formValidCopy.noOfTravelersValid = false
+                    formValidCopy = false
+
                 }
                 else {
                     formErrorCopy.noOfTravelersError = ""
-                    formValidCopy.noOfTravelersValid = true
+                    formValidCopy = true
+
                 }
                 break
             case 'date':
@@ -74,22 +78,21 @@ export default function BookingComponent(props) {
                 let today = new Date().setHours(0, 0, 0, 0)
                 if (!value) {
                     formErrorCopy.dateError = "This field can't be empty!"
-                    formValidCopy.dateValid = false
+                    formValidCopy = false
                 }
                 else if (date < today) {
                     formErrorCopy.dateError = "Please select future date!"
-                    formValidCopy.dateValid = false
+                    formValidCopy = false
                 }
                 else {
                     formErrorCopy.dateError = ""
-                    formValidCopy.dateValid = true
+                    formValidCopy = true
                 }
                 break
 
         }
-        formValidCopy.button = formValidCopy.noOfTravelersValid && formValidCopy.dateValid
         updateFormErrors(formErrorCopy)
-        updateFormValid(formValidCopy)
+        updatecnfButton(formValidCopy)
     }
 
 
@@ -117,7 +120,45 @@ export default function BookingComponent(props) {
         let endDate = new Date(timeMs).toDateString()
         updateEndDate(endDate)
     }
-    console.log(formErrors);
+
+    if (goBack) {
+        window.location.reload()
+    }
+    let handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(sessionStorage.getItem('userId'));
+        let postData = {
+            userId: sessionStorage.getItem('userId'),
+
+            destId: selectedPackage.destinationId,
+            destinationName: selectedPackage.name,
+            checkInDate: new Date(bookForm.date).toLocaleDateString(),
+            checkOutDate: new Date(endDate).toLocaleDateString(),
+            noOfPersons: bookForm.noOfTravelers,
+            totalCharges: totalCost
+        }
+        axios.post(url + 'booking', postData).then((res) => {
+            console.log(res);
+            updateFormErrorMessages({ ...formErrorMessages, successMsg: res.data })
+        }).catch((err) => {
+            updateFormErrorMessages({ ...formErrorMessages, errorMsg: err.response.data.message })
+        })
+    }
+    if (formErrorMessages.successMsg) {
+        return <React.Fragment>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-8 mx-auto">
+                        <h3>Booking Confirmed!!!</h3>
+
+                        <h4>Congratulations Trip planned to {selectedPackage.name}</h4>
+                        <h4> Trip starts on:{bookForm.date}</h4>
+                        <h4> Trip ends on: {endDate}</h4>
+                    </div>
+                </div>
+            </div>
+        </React.Fragment>
+    }
     return <React.Fragment>
         <div className="container">
             <div className="row">
@@ -162,7 +203,7 @@ export default function BookingComponent(props) {
 
                 </div>
                 <div className="col-md-5">
-                    <form className="bookingForm shadow">
+                    <form className="bookingForm shadow" onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label className="form-label" htmlFor="noOfTravelers">Number of Travelers</label>
                             <input onChange={handleChange} type="number" name="noOfTravelers" className="form-control" value={bookForm.noOfTravelers}></input>
@@ -183,8 +224,8 @@ export default function BookingComponent(props) {
                         </div>
                         <h5>Your trip ends on {endDate} and you will pay ₹ {totalCost}</h5>
                         <br></br>
-                        <button className="btn btn-primary" disabled={!formValid.button}>Confirm Booking</button><br /><br />
-                        <button className="btn btn-primary ">Go Back</button>
+                        <button type="submit" className="btn btn-primary" disabled={!cnfButton}>Confirm Booking</button><br /><br />
+                        <button className="btn btn-primary" onClick={() => updateGoBack(true)}>Go Back</button>
                     </form>
                 </div>
             </div>

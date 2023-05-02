@@ -68,7 +68,7 @@ function App() {
         <Switch>
         <Route exact path='/' component={Home} ></Route>
           <Route exact path='/home' component={Home} ></Route>
-          <Route path='/login' component={FullScreenDemo}></Route>
+          <Route path='/login' component={Login}></Route>
           <Route path='/register' component={Register}></Route>
            <Route path='/hotDeals' component={HotDeals}></Route>
               <Route path='/searchPackages/:keyword' component={Packages}></Route> 

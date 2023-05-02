@@ -26,8 +26,9 @@ export default function Packages(props) {
     let fetchPackages = () => {
         axios.get(url + "searchPackages/" + searchValue).then((response) => {
             updatepackages(response.data)
+            console.log(response.data);
         }).catch((err) => {
-
+            console.log(err, "err");
             if (err.response) {
                 updateMessage({ ...messages, errorMsg: err.response.data.message })
             }

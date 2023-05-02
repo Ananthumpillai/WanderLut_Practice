@@ -244,3 +244,17 @@ Sun Apr 30 2023 12:39:50 GMT+0530 (India Standard Time)Error: Sorry we don't ser
 Sun Apr 30 2023 12:39:57 GMT+0530 (India Standard Time)Error: Sorry we don't serve this location
     at packageService.destination (C:\Users\ananthu.m\Documents\GitHub\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:25:17)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Tue May 02 2023 20:05:07 GMT+0530 (India Standard Time)SyntaxError: Unexpected token u in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\ananthu.m\Documents\GitHub\WanderLut_Practice\Wander_WS\node_modules\body-parser\lib\types\json.js:92:19)
+    at C:\Users\ananthu.m\Documents\GitHub\WanderLut_Practice\Wander_WS\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)
+    at invokeCallback (C:\Users\ananthu.m\Documents\GitHub\WanderLut_Practice\Wander_WS\node_modules\raw-body\index.js:238:16)
+    at done (C:\Users\ananthu.m\Documents\GitHub\WanderLut_Practice\Wander_WS\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (C:\Users\ananthu.m\Documents\GitHub\WanderLut_Practice\Wander_WS\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:513:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+Tue May 02 2023 22:08:13 GMT+0530 (India Standard Time)Error: Phone Number and Password doesn't match
+    at userService.login (C:\Users\ananthu.m\Documents\GitHub\WanderLut_Practice\Wander_WS\src\service\service.js:12:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
