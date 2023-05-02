@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "primereact/resources/primereact.min.css";
+// import "primereact/resources/primereact.min.css";
 import { TabView, TabPanel } from 'primereact/tabview';
-import "primereact/resources/themes/rhea/theme.css"
+// import "primereact/resources/themes/rhea/theme.css"
 
-import 'primeicons/primeicons.css';
+// import 'primeicons/primeicons.css';
 
 import { TextField, Button, Link as Links } from '@mui/material';
 import BookingComponent from "./BookingComponent";
@@ -182,8 +182,10 @@ export default function RenderPackages(props) {
         let path = '/book/' + selectedPackage.destinationId
         return (<React.Fragment>
 
-    
-            <Redirect to={path}></Redirect>
+            <BookingComponent form={bookForm} date={endDate} cost={totalCost} selectedPackage={selectedPackage}
+            
+            ></BookingComponent>
+            {/* <Redirect to={path}></Redirect> */}
 
         </React.Fragment>
         )

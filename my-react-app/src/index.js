@@ -4,6 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
+import 'primereact/resources/themes/nova-light/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import "bootstrap/dist/css/bootstrap.css";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
  

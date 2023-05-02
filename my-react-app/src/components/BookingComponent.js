@@ -1,11 +1,193 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import { Fieldset } from 'primereact/fieldset';
+import { Link } from 'react-router-dom'
+
+
+export default function BookingComponent(props) {
+
+    const [bookForm, updateBookForm] = useState(props.form)
+
+    const [endDate, updateEndDate] = useState(props.date)
+
+    const [totalCost, updateTotalCost] = useState(props.cost)
+
+    const [selectedPackage, updateSelectedPackage] = useState(props.selectedPackage)
+
+    const [formErrorMessages, updateFormErrorMessages] = useState({
+        errorMsg: "",
+        successMsg: ""
+    })
+
+    const [formErrors, updateFormErrors] = useState({
+        noOfTravelersError: "",
+        dateError: "",
+    })
+    const [formValid, updateFormValid] = useState({
+        noOfTravelersValid: false,
+        dateValid: false,
+        button: true
+    })
+
+    let handleChange = (e) => {
+        let name = e.target.name
+        let value
+        if (e.target.checked) {
+            value = e.target.checked
+        }
+        else if (e.target.value == 'on') {
+            value = false
+        }
+        else {
+            value = e.target.value
+        }
+        let formCopy = { ...bookForm }
+        formCopy[name] = value
+        updateBookForm(formCopy)
+        validateBookForm(name, value)
+    }
+    useEffect(()=>{
+        calculateCharges()
+
+    },[bookForm.noOfTravelers,bookForm.includeFlight])
+
+    let validateBookForm = (name, value) => {
+        console.log("inside validate");
+        let formErrorCopy = { ...formErrors }
+        let formValidCopy = { ...formValid }
+        switch (name) {
+            case 'noOfTravelers':
+                if (!value) {
+                    formErrorCopy.noOfTravelersError = "This field can't be empty!"
+                    formValidCopy.noOfTravelersValid = false
+                }
+                else if (value < 1 || value > 5) {
+                    formErrorCopy.noOfTravelersError = "No. of persons can't be more than 5 and less than 1."
+                    formValidCopy.noOfTravelersValid = false
+                }
+                else {
+                    formErrorCopy.noOfTravelersError = ""
+                    formValidCopy.noOfTravelersValid = true
+                }
+                break
+            case 'date':
+                let date = new Date(value).setHours(0, 0, 0, 0)
+                let today = new Date().setHours(0, 0, 0, 0)
+                if (!value) {
+                    formErrorCopy.dateError = "This field can't be empty!"
+                    formValidCopy.dateValid = false
+                }
+                else if (date < today) {
+                    formErrorCopy.dateError = "Please select future date!"
+                    formValidCopy.dateValid = false
+                }
+                else {
+                    formErrorCopy.dateError = ""
+                    formValidCopy.dateValid = true
+                }
+                break
+
+        }
+        formValidCopy.button = formValidCopy.noOfTravelersValid && formValidCopy.dateValid
+        updateFormErrors(formErrorCopy)
+        updateFormValid(formValidCopy)
+    }
 
 
 
+    let calculateCharges = () => {
+        if (selectedPackage.availability < bookForm.noOfTravelers) {
+            let msg = "Sorry we can only accomodate" + selectedPackage.availability + "Passengers"
+            updateFormErrorMessages({ ...formErrorMessages, errorMsg: msg })
+        }
+        else {
+            if (bookForm.includeFlight === true) {
+                let bc = selectedPackage.chargesPerPerson * Number(bookForm.noOfTravelers)
+                let total_cost = bc + (Number(bookForm.noOfTravelers) * selectedPackage.flightCharges)
+                updateTotalCost(total_cost)
+            }
+            else {
+                let bc = selectedPackage.chargesPerPerson * Number(bookForm.noOfTravelers)
+                updateTotalCost(bc)
+            }
+
+        }
+        let startDate = new Date(bookForm.date)
+        let onedayMs = 24 * 60 * 60 * 1000
+        let timeMs = startDate.getTime() + (selectedPackage.noOfNights * onedayMs);
+        let endDate = new Date(timeMs).toDateString()
+        updateEndDate(endDate)
+    }
+    console.log(formErrors);
+    return <React.Fragment>
+        <div className="container">
+            <div className="row">
+                <div className="col-md-7 mt-5">
+                    <Fieldset legend="Overview" className="mb-5" toggleable collapsed={true}>
+
+                        {selectedPackage.details.about}
 
 
-export default function BookingComponent() {
+                    </Fieldset>
 
-  
-        return <h1>BookingComponent</h1>
+                    <Fieldset legend="Package Inclusions" className="mb-5" toggleable collapsed={true}>
+
+                        <ul>
+                            {selectedPackage.details.itinerary.packageInclusions.map((data, index) => {
+
+                                return <li key={index}>{data}</li>
+
+                            })}
+                        </ul>
+
+                    </Fieldset>
+
+                    <Fieldset legend="Itinerary" className="mb-5" toggleable={true} collapsed={true}>
+
+                        <h4>Day Wise Itinerary</h4>
+                        <h6>Day 1</h6>
+                        <p>{selectedPackage.details.itinerary.dayWiseDetails.firstDay}</p>
+                        {selectedPackage.details.itinerary.dayWiseDetails.restDaysSightSeeing.map((data, index) => {
+                            return <React.Fragment key={index}>
+                                <h6>Day {index + 2}</h6>
+                                <p>{data}</p>
+                            </React.Fragment>
+
+                        })}
+                        <h6>Day {selectedPackage.details.itinerary.dayWiseDetails.restDaysSightSeeing.length + 2}</h6>
+                        <p>{selectedPackage.details.itinerary.dayWiseDetails.lastDay}</p>
+                        <span className="text-danger"> **This itinerary is just a suggestion, itinerary can be modified as per requirement.<Link to="contactUs">Contact us</Link> for more details.</span>
+
+                    </Fieldset>
+
+
+                </div>
+                <div className="col-md-5">
+                    <form className="bookingForm shadow">
+                        <div className="mb-3">
+                            <label className="form-label" htmlFor="noOfTravelers">Number of Travelers</label>
+                            <input onChange={handleChange} type="number" name="noOfTravelers" className="form-control" value={bookForm.noOfTravelers}></input>
+                            <span className="text-danger">{formErrors.noOfTravelersError}</span>
+
+                        </div>
+
+                        <div className="mb-3">
+                            <label className="form-label" htmlFor="TripStartDate">Trip Start Date</label>
+
+                            <input onChange={handleChange} type="date" name="date" className="form-control" value={bookForm.date}></input>
+                            <span className="text-danger">{formErrors.dateError}</span>
+                        </div>
+
+                        <div className="mb-3">
+                            <label className="form-label" htmlFor="includeFlight">Include Flight</label> &nbsp;
+                            <input onChange={handleChange} type="checkbox" name="includeFlight" className="form-check-input" checked={bookForm.includeFlight} ></input>
+                        </div>
+                        <h5>Your trip ends on {endDate} and you will pay ₹ {totalCost}</h5>
+                        <br></br>
+                        <button className="btn btn-primary" disabled={!formValid.button}>Confirm Booking</button><br /><br />
+                        <button className="btn btn-primary ">Go Back</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </React.Fragment >
 }

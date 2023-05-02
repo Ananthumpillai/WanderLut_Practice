@@ -4,9 +4,9 @@ import { TextField, Button, Link as Links } from '@mui/material';
 import BookingComponent from "./BookingComponent";
 import { Redirect, Link } from 'react-router-dom';
 
-import "primereact/resources/primereact.min.css";
+// import "primereact/resources/primereact.min.css";
 import { TabView, TabPanel } from 'primereact/tabview';
-import "primereact/resources/themes/rhea/theme.css"
+// import "primereact/resources/themes/rhea/theme.css"
 
 import 'primeicons/primeicons.css';
 import RenderPackages from "./RenderPackages";
