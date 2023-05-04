@@ -28,7 +28,7 @@ export default function Packages(props) {
             updatepackages(response.data)
             console.log(response.data);
         }).catch((err) => {
-            console.log(err, "err");
+            //console.log(err, "err");
             if (err.response) {
                 updateMessage({ ...messages, errorMsg: err.response.data.message })
             }

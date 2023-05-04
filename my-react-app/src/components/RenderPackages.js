@@ -128,224 +128,230 @@ export default function RenderPackages(props) {
         calculateCharges()
     }
     let calculateCharges = () => {
-        if (selectedPackage.availability < bookForm.noOfTravelers) {
-            let msg = "Sorry we can only accomodate" + selectedPackage.availability + "Passengers"
+        // console.log(selectedPackage)
+        if (selectedPackage.availability === 0) {
+            let msg = "Sorry this trip is full!!!..."
             updateFormErrorMessages({ ...formErrorMessages, errorMsg: msg })
         }
+       else if (selectedPackage.availability < bookForm.noOfTravelers) {
+        let msg = "Sorry we can only accomodate" + selectedPackage.availability + "Passengers"
+        updateFormErrorMessages({ ...formErrorMessages, errorMsg: msg })
+    }
+    else {
+        if (bookForm.includeFlight === true) {
+            let bc = selectedPackage.chargesPerPerson * Number(bookForm.noOfTravelers)
+            let total_cost = bc + (Number(bookForm.noOfTravelers) * selectedPackage.flightCharges)
+            updateTotalCost(total_cost)
+        }
         else {
-            if (bookForm.includeFlight === true) {
-                let bc = selectedPackage.chargesPerPerson * Number(bookForm.noOfTravelers)
-                let total_cost = bc + (Number(bookForm.noOfTravelers) * selectedPackage.flightCharges)
-                updateTotalCost(total_cost)
-            }
-            else {
-                let bc = selectedPackage.chargesPerPerson * Number(bookForm.noOfTravelers)
-                updateTotalCost(bc)
-            }
-
+            let bc = selectedPackage.chargesPerPerson * Number(bookForm.noOfTravelers)
+            updateTotalCost(bc)
         }
-        let startDate = new Date(bookForm.date)
-        let onedayMs = 24 * 60 * 60 * 1000
-        let timeMs = startDate.getTime() + (selectedPackage.noOfNights * onedayMs);
-        let endDate = new Date(timeMs).toDateString()
-        updateEndDate(endDate)
+
     }
-    let hideTab = () => {
-        updateSidebar(false)
-        defaultBookingForm()
+    let startDate = new Date(bookForm.date)
+    let onedayMs = 24 * 60 * 60 * 1000
+    let timeMs = startDate.getTime() + (selectedPackage.noOfNights * onedayMs);
+    let endDate = new Date(timeMs).toDateString()
+    updateEndDate(endDate)
+}
+let hideTab = () => {
+    updateSidebar(false)
+    defaultBookingForm()
+    updateFormErrorMessages({...formErrorMessages,errorMsg:""})
+}
+let defaultBookingForm = () => {
+
+    let bForm = {
+        noOfTravelers: '1',
+        date: '',
+        includeFlight: false
     }
-    let defaultBookingForm = () => {
-
-        let bForm = {
-            noOfTravelers: '1',
-            date: '',
-            includeFlight: false
-        }
-        let bformError = {
-            noOfTravelersError: "",
-            dateError: ""
-        }
-        let formValidCopy = {
-            noOfTravelersValid: false,
-            dateValid: false,
-            button: false
-        }
-        updateTotalCost("")
-        updateEndDate("")
-        updateBookForm(bForm)
-        updateFormErrors(bformError)
-        updateFormValid(formValidCopy)
+    let bformError = {
+        noOfTravelersError: "",
+        dateError: ""
     }
-    if (bookPage) {
-
-
-        let path = '/book/' + selectedPackage.destinationId
-        return (<React.Fragment>
-
-            <BookingComponent form={bookForm} date={endDate} cost={totalCost} selectedPackage={selectedPackage}
-            
-            ></BookingComponent>
-            {/* <Redirect to={path}></Redirect> */}
-
-        </React.Fragment>
-        )
+    let formValidCopy = {
+        noOfTravelersValid: false,
+        dateValid: false,
+        button: false
     }
-    // console.log(bookPage);
-    return (
+    updateTotalCost("")
+    updateEndDate("")
+    updateBookForm(bForm)
+    updateFormErrors(bformError)
+    updateFormValid(formValidCopy)
+}
+if (bookPage) {
 
 
-        <div>
-            {sidebar ?
-                <Sidebar visible={sidebar} className="p-sidebar-lg bg-white" position="right" onHide={hideTab} style={{ overflow: 'scroll' }}>
-                    <h2>{selectedPackage.name}</h2>
+    let path = '/book/' + selectedPackage.destinationId
+    return (<React.Fragment>
 
-                    <TabView activeIndex={index} onTabChange={(e) => updateIndex(e.index)} className="p-tabview" >
-                        <TabPanel header="Overview">
-                            <div className="row">
-                                <div className="col-md-5">
-                                    <img className="package-image img-fluid" src={process.env.PUBLIC_URL + selectedPackage.imageUrl} alt="image"></img>
+        <BookingComponent form={bookForm} date={endDate} cost={totalCost} selectedPackage={selectedPackage}
 
-                                </div>
+        ></BookingComponent>
+        {/* <Redirect to={path}></Redirect> */}
 
-                                <div className="col-md-7">
-                                    <h4>Package Includes:</h4>
-                                    <ul>
-                                        {selectedPackage.details.itinerary.packageInclusions.map((data, index) => {
+    </React.Fragment>
+    )
+}
+// console.log(bookPage);
+return (
 
-                                            return <li key={index}>{data}</li>
 
-                                        })}
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="text-justify itineraryAbout">
-                                <h4>Tour Overview</h4>
-                                {selectedPackage.details.about}
+    <div>
+        {sidebar ?
+            <Sidebar visible={sidebar} className="p-sidebar-lg bg-white" position="right" onHide={hideTab} style={{ overflow: 'scroll' }}>
+                <h2>{selectedPackage.name}</h2>
+
+                <TabView activeIndex={index} onTabChange={(e) => updateIndex(e.index)} className="p-tabview" >
+                    <TabPanel header="Overview">
+                        <div className="row">
+                            <div className="col-md-5">
+                                <img className="package-image img-fluid" src={process.env.PUBLIC_URL + selectedPackage.imageUrl} alt="image"></img>
+
                             </div>
 
-                            {/* <div className="text-justify itineraryAbout">
+                            <div className="col-md-7">
+                                <h4>Package Includes:</h4>
+                                <ul>
+                                    {selectedPackage.details.itinerary.packageInclusions.map((data, index) => {
+
+                                        return <li key={index}>{data}</li>
+
+                                    })}
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="text-justify itineraryAbout">
+                            <h4>Tour Overview</h4>
+                            {selectedPackage.details.about}
+                        </div>
+
+                        {/* <div className="text-justify itineraryAbout">
                                 <h4>Tour Overview:</h4>
                                 {selectedPackage.details.about}
                             </div> */}
-                        </TabPanel>
-                        <TabPanel header="Itinerary">
-                            <div className="row">
-                                <h4>Day Wise Itinerary</h4>
-                                <h6>Day 1</h6>
-                                <p>{selectedPackage.details.itinerary.dayWiseDetails.firstDay}</p>
-                                {selectedPackage.details.itinerary.dayWiseDetails.restDaysSightSeeing.map((data, index) => {
-                                    return <React.Fragment key={index}>
-                                        <h6>Day {index + 2}</h6>
-                                        <p>{data}</p>
-                                    </React.Fragment>
+                    </TabPanel>
+                    <TabPanel header="Itinerary">
+                        <div className="row">
+                            <h4>Day Wise Itinerary</h4>
+                            <h6>Day 1</h6>
+                            <p>{selectedPackage.details.itinerary.dayWiseDetails.firstDay}</p>
+                            {selectedPackage.details.itinerary.dayWiseDetails.restDaysSightSeeing.map((data, index) => {
+                                return <React.Fragment key={index}>
+                                    <h6>Day {index + 2}</h6>
+                                    <p>{data}</p>
+                                </React.Fragment>
 
-                                })}
-                                <h6>Day {selectedPackage.details.itinerary.dayWiseDetails.restDaysSightSeeing.length + 2}</h6>
-                                <p>{selectedPackage.details.itinerary.dayWiseDetails.lastDay}</p>
-                                <span className="text-danger"> **This itinerary is just a suggestion, itinerary can be modified as per requirement.<Links href="contactUs">Contact us</Links> for more details.</span>
+                            })}
+                            <h6>Day {selectedPackage.details.itinerary.dayWiseDetails.restDaysSightSeeing.length + 2}</h6>
+                            <p>{selectedPackage.details.itinerary.dayWiseDetails.lastDay}</p>
+                            <span className="text-danger"> **This itinerary is just a suggestion, itinerary can be modified as per requirement.<Links href="contactUs">Contact us</Links> for more details.</span>
+                        </div>
+                    </TabPanel>
+                    <TabPanel header="Book">
+                        <div className="row">
+                            <h3 className="itenaryAbout text-success">** Charge Per Person: ₹ {selectedPackage.chargesPerPerson}</h3>
+                            <form onSubmit={handleSubmit}>
+                                <div className="mb-3">
+                                    <label className="form-label" htmlFor="noOftravelers">Number of Travelers</label>
+                                    <input value={bookForm.noOfTravelers} type="number" className="form-control" onChange={handleChange} name="noOfTravelers" ></input>
+                                    <span className="text-danger">{formErrors.noOfTravelersError}</span>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label" htmlFor="date">Trip Start Date</label>
+                                    <input value={bookForm.date} type="date" className="form-control" onChange={handleChange} name="date"></input>
+                                    <span className="text-danger">{formErrors.dateError}</span>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label" htmlFor="includeFlight">Include Flight </label>&nbsp;
+                                    <input type="checkbox" onChange={handleChange} className="form-check-input" name="includeFlight"></input>
+                                </div>
+
+                                <button type="submit" className="btn btn-primary btn-lg" disabled={!formValid.button}>Calculate Charges</button>
+                                <div className="m-2">
+                                    {totalCost ?
+                                        <h4 className="text-success">Your trip ends on {endDate} and you have to pay ₹ {totalCost}</h4>
+                                        :
+                                        <span className="text-danger">**Charges Exclude flight charges.</span>
+                                    }
+                                </div>
+                            </form>
+                            <div className="text-center">
+                                <button className="btn btn-success" disabled={!totalCost} onClick={() => { udpateBookPage(true) }}>Book</button> &nbsp; &nbsp; &nbsp;
+                                <button className="btn btn-link" onClick={hideTab}>Cancel</button>
                             </div>
-                        </TabPanel>
-                        <TabPanel header="Book">
-                            <div className="row">
-                                <h3 className="itenaryAbout text-success">** Charge Per Person: ₹ {selectedPackage.chargesPerPerson}</h3>
-                                <form onSubmit={handleSubmit}>
-                                    <div className="mb-3">
-                                        <label className="form-label" htmlFor="noOftravelers">Number of Travelers</label>
-                                        <input value={bookForm.noOfTravelers} type="number" className="form-control" onChange={handleChange} name="noOfTravelers" ></input>
-                                        <span className="text-danger">{formErrors.noOfTravelersError}</span>
-                                    </div>
-                                    <div className="mb-3">
-                                        <label className="form-label" htmlFor="date">Trip Start Date</label>
-                                        <input value={bookForm.date} type="date" className="form-control" onChange={handleChange} name="date"></input>
-                                        <span className="text-danger">{formErrors.dateError}</span>
-                                    </div>
-                                    <div className="mb-3">
-                                        <label className="form-label" htmlFor="includeFlight">Include Flight </label>&nbsp;
-                                        <input type="checkbox" onChange={handleChange} className="form-check-input" name="includeFlight"></input>
-                                    </div>
+                            <span className="text-danger">{formErrorMessages.errorMsg}</span>
+                        </div>
+                    </TabPanel>
+                </TabView>
 
-                                    <button type="submit" className="btn btn-primary btn-lg" disabled={!formValid.button}>Calculate Charges</button>
-                                    <div className="m-2">
-                                        {totalCost ?
-                                            <h4 className="text-success">Your trip ends on {endDate} and you have to pay ₹ {totalCost}</h4>
-                                            :
-                                            <span className="text-danger">**Charges Exclude flight charges.</span>
-                                        }
-                                    </div>
-                                </form>
-                                <div className="text-center">
-                                    <button className="btn btn-success" disabled={!totalCost} onClick={() => { udpateBookPage(true) }}>Book</button> &nbsp; &nbsp; &nbsp;
-                                    <button className="btn btn-link" onClick={hideTab}>Cancel</button>
-                                </div>
-                                <span className="text-danger">{formErrorMessages.errorMsg}</span>
+            </Sidebar>
+
+            : null
+        }
+        <div className="container-fluid">
+
+            {data.map((singlePackage, index) => {
+
+
+                return <div className="card m-5" key={index}>
+                    <div className="card-body p-5">
+                        <div className="row ">
+                            <div className="col-md-4 ">
+
+                                <img className="package-image img-fluid" src={process.env.PUBLIC_URL + singlePackage.imageUrl} alt="image"></img>
                             </div>
-                        </TabPanel>
-                    </TabView>
-
-                </Sidebar>
-
-                : null
-            }
-            <div className="container-fluid">
-
-                {data.map((singlePackage, index) => {
+                            <div className="col-md-5">
 
 
-                    return <div className="card m-5" key={index}>
-                        <div className="card-body p-5">
-                            <div className="row ">
-                                <div className="col-md-4 ">
-
-                                    <img className="package-image img-fluid" src={process.env.PUBLIC_URL + singlePackage.imageUrl} alt="image"></img>
+                                <div className="featured-text text-lg-left">
+                                    <h4>{singlePackage.name}</h4>
+                                    <div className="badge bg-info">{singlePackage.noOfNights}<em> Nights</em></div>
+                                    {singlePackage.discount ? <div className="discount text-danger">{singlePackage.discount}% Instant Discount</div> : null}
+                                    <p className="text-dark mb-0">{singlePackage.details.about}</p>
                                 </div>
-                                <div className="col-md-5">
+                                <br />
+                            </div>
+                            <div className="col-md-3">
+                                <h4>Prices Starting From:</h4>
+                                <div className="text-center text-success"><h6>₹ {singlePackage.chargesPerPerson}</h6></div><br /><br />
+                                <div>
+                                    <Button
 
+                                        fullWidth
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={() => viewPackage(singlePackage)}
+                                    >
+                                        View Details
 
-                                    <div className="featured-text text-lg-left">
-                                        <h4>{singlePackage.name}</h4>
-                                        <div className="badge bg-info">{singlePackage.noOfNights}<em> Nights</em></div>
-                                        {singlePackage.discount ? <div className="discount text-danger">{singlePackage.discount}% Instant Discount</div> : null}
-                                        <p className="text-dark mb-0">{singlePackage.details.about}</p>
-                                    </div>
-                                    <br />
+                                    </Button></div>
+                                {/* <div><button className="btn btn-primary book" onClick={() => this.getItinerary(singlePackage)}>View Details</button></div><br /> */}
+                                {/* <div><br/><button className="btn btn-primary book" onClick={() => this.openBooking(singlePackage)}>Book </button>  </div> */}
+                                <div><br />
+                                    <Button
+
+                                        fullWidth
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={() => book(singlePackage)}
+                                    >
+                                        Book
+                                    </Button>
                                 </div>
-                                <div className="col-md-3">
-                                    <h4>Prices Starting From:</h4>
-                                    <div className="text-center text-success"><h6>₹ {singlePackage.chargesPerPerson}</h6></div><br /><br />
-                                    <div>
-                                        <Button
 
-                                            fullWidth
-                                            variant="contained"
-                                            color="primary"
-                                            onClick={() => viewPackage(singlePackage)}
-                                        >
-                                            View Details
-
-                                        </Button></div>
-                                    {/* <div><button className="btn btn-primary book" onClick={() => this.getItinerary(singlePackage)}>View Details</button></div><br /> */}
-                                    {/* <div><br/><button className="btn btn-primary book" onClick={() => this.openBooking(singlePackage)}>Book </button>  </div> */}
-                                    <div><br />
-                                        <Button
-
-                                            fullWidth
-                                            variant="contained"
-                                            color="primary"
-                                            onClick={() => book(singlePackage)}
-                                        >
-                                            Book
-                                        </Button>
-                                    </div>
-
-                                </div>
                             </div>
                         </div>
                     </div>
-                })}
-            </div>
-
+                </div>
+            })}
         </div>
-    )
+
+    </div>
+)
 }
 
 

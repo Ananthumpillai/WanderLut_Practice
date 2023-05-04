@@ -258,3 +258,258 @@ Tue May 02 2023 20:05:07 GMT+0530 (India Standard Time)SyntaxError: Unexpected t
 Tue May 02 2023 22:08:13 GMT+0530 (India Standard Time)Error: Phone Number and Password doesn't match
     at userService.login (C:\Users\ananthu.m\Documents\GitHub\WanderLut_Practice\Wander_WS\src\service\service.js:12:19)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Thu May 04 2023 12:33:14 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 12:33:24 GMT+0530 (India Standard Time)MongooseError: Operation `Destinations.find()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (E:\WanderLut_Practice\Wander_WS\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:198:23)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+Thu May 04 2023 12:33:44 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 12:34:14 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 12:34:59 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 12:35:09 GMT+0530 (India Standard Time)MongooseError: Operation `Destinations.find()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (E:\WanderLut_Practice\Wander_WS\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:198:23)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+Thu May 04 2023 12:38:12 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:88:21
+    at async dbModel.destinations (E:\WanderLut_Practice\Wander_WS\src\model\package.js:19:28)
+    at async packageService.destination (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:23:18)
+Thu May 04 2023 12:39:45 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 12:39:55 GMT+0530 (India Standard Time)MongooseError: Operation `Hotdeals.find()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (E:\WanderLut_Practice\Wander_WS\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:198:23)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+Thu May 04 2023 12:39:55 GMT+0530 (India Standard Time)MongooseError: Operation `Destinations.find()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (E:\WanderLut_Practice\Wander_WS\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:198:23)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+Thu May 04 2023 12:40:27 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 12:41:43 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 12:42:13 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 12:44:51 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 12:47:12 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:88:21
+    at async dbModel.destinations (E:\WanderLut_Practice\Wander_WS\src\model\package.js:19:28)
+    at async packageService.destination (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:23:18)
+Thu May 04 2023 12:48:15 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 12:51:07 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 12:52:17 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 12:53:28 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 12:54:01 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 12:55:00 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 12:59:34 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 13:01:01 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 13:01:51 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 13:02:01 GMT+0530 (India Standard Time)MongooseError: Operation `Hotdeals.find()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (E:\WanderLut_Practice\Wander_WS\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:198:23)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+Thu May 04 2023 13:02:01 GMT+0530 (India Standard Time)MongooseError: Operation `Hotdeals.find()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (E:\WanderLut_Practice\Wander_WS\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:198:23)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+Thu May 04 2023 13:02:01 GMT+0530 (India Standard Time)MongooseError: Operation `Hotdeals.find()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (E:\WanderLut_Practice\Wander_WS\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:198:23)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+Thu May 04 2023 13:02:24 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 13:05:04 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 13:05:37 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 13:06:27 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 13:07:15 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 13:07:25 GMT+0530 (India Standard Time)MongooseError: Operation `Hotdeals.find()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (E:\WanderLut_Practice\Wander_WS\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:198:23)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+Thu May 04 2023 13:18:55 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:77:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 13:20:18 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:78:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 13:21:36 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:78:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 13:35:05 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:78:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 13:45:39 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:78:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 13:51:58 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:78:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 15:00:38 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:78:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 15:08:58 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:78:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 15:12:13 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:78:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 15:33:32 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:78:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 15:33:42 GMT+0530 (India Standard Time)MongooseError: Operation `Hotdeals.find()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (E:\WanderLut_Practice\Wander_WS\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:198:23)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+Thu May 04 2023 15:34:51 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:78:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 15:35:50 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:78:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 15:36:59 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:78:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 15:37:09 GMT+0530 (India Standard Time)MongooseError: Operation `Hotdeals.find()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (E:\WanderLut_Practice\Wander_WS\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:198:23)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+Thu May 04 2023 15:39:00 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:78:21
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 15:45:57 GMT+0530 (India Standard Time)TypeError: connection.hotdeals is not a function
+    at dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:36)
+    at packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:32)
+    at E:\WanderLut_Practice\Wander_WS\src\routing\routing.js:33:20
+    at Layer.handle [as handle_request] (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\layer.js:95:5)
+    at E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\index.js:317:13)
+    at E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\index.js:335:12)
+Thu May 04 2023 15:47:33 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:78:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 15:47:41 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:78:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 15:54:28 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:78:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async dbModel.hotDeals (E:\WanderLut_Practice\Wander_WS\src\model\package.js:7:19)
+    at async packageService.hotDeals (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:10:18)
+Thu May 04 2023 15:57:52 GMT+0530 (India Standard Time)Error: Could not connect to database
+    at E:\WanderLut_Practice\Wander_WS\src\utilities\connection.js:89:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async dbModel.destinations (E:\WanderLut_Practice\Wander_WS\src\model\package.js:20:28)
+    at async packageService.destination (E:\WanderLut_Practice\Wander_WS\src\service\packageSevice.js:23:18)
+Thu May 04 2023 16:16:42 GMT+0530 (India Standard Time)TypeError: connection.user is not a function
+    at dbModel.register (E:\WanderLut_Practice\Wander_WS\src\model\model.js:27:36)
+    at userService.register (E:\WanderLut_Practice\Wander_WS\src\service\service.js:19:37)
+    at E:\WanderLut_Practice\Wander_WS\src\routing\routing.js:23:17
+    at Layer.handle [as handle_request] (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\layer.js:95:5)
+    at E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\index.js:317:13)
+    at E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\WanderLut_Practice\Wander_WS\node_modules\express\lib\router\index.js:335:12)
+Thu May 04 2023 16:42:42 GMT+0530 (India Standard Time)Error: Contact No already exists
+    at dbModel.register (E:\WanderLut_Practice\Wander_WS\src\model\model.js:44:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async userService.register (E:\WanderLut_Practice\Wander_WS\src\service\service.js:19:23)

@@ -29,6 +29,7 @@ router.post('/register', (req, res, next) => {
 })
 
 router.get('/hotDeals', (req, res, next) => {
+    console.log("haa")
     packageService.hotDeals().then((hotDeals) => {
         res.send(hotDeals)
     }).catch((err) => {

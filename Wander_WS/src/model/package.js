@@ -5,6 +5,7 @@ let dbModel = {}
 
 dbModel.hotDeals = async () => {
     let dbModel = await connection.hotdeals()
+    console.log("dbmodel",dbModel);
     let hotdeals = await dbModel.find({}, { _id: 0 })
     if (hotdeals.length > 0) {
         return hotdeals

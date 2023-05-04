@@ -6,9 +6,9 @@ let dbModel = {}
 dbModel.login = async (phoneNumber, password) => {
 
     let dbModel = await connection.user()
-    let result = await dbModel.findOne({ $and: [{ contactNo: phoneNumber, password: password }] })
+    let result = await dbModel.findOne({ $and: [{ contactNo: phoneNumber, password: password }] },{_id:0})
     if (result) {
-        return true
+        return result
     }
     else {
         return false

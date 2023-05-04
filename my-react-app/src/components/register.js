@@ -81,12 +81,12 @@ export default function Register() {
         let formvalid = { ...formValid }
 
         if (value != form.password) {
-    
+
             formerror.cnfPassword = "Password doesn't match"
             formvalid.cnfPassword = false
         }
         else {
-      
+
             formerror.cnfPassword = ""
             formvalid.cnfPassword = true
         }
@@ -171,7 +171,7 @@ export default function Register() {
         register()
     }
     let register = () => {
-        axios.post(url+"register", form).then((res) => {
+        axios.post(url + "register", form).then((res) => {
             updateMessage({ successMessage: res.data.userId })
         }).catch((err) => {
             updateMessage({ errorMessage: err.response.data.message })
@@ -179,73 +179,74 @@ export default function Register() {
     }
     // console.log(form, formError, formValid);
     if (messages.successMessage) {
-        return(
-        <div className="container center">
-           
-            <h1 className="text text-success text-center">User Registered Successfully  {messages.successMessage}</h1><br/>
-             <h2 className="text text-link text-center"><Link to="/login">Click here to login</Link> </h2>
+        return (
+            <div className="container" style={{height:"100vh"}}>
+                <div className='row'>
+                    <div className='col-md-8 mx-auto'>
+                        <h1 className="text text-success text-center">User Registered Successfully  {messages.successMessage}</h1><br />
+                        <h2 className="text text-link text-center"><Link to="/login">Click here to login</Link> </h2>
+                    </div>
+                </div>
             </div>
-      
         )
     }
-    else
-    {
-    return (
+    else {
+        return (
 
-        
-        <section id="registerPage" >
-            <div className="col-md-4 offset-6 " >
-                <form className="form bg-light shadow p-4 mb-4 bg-white rounded-lg" onSubmit={handleSubmit}>
-                    <h1 style={{ fontFamily: 'cursive' }}>Sign Up</h1>
-                    <TextField
-                        margin="normal" required fullWidth name="name" id="name" label="Name" aria-required
-                        type="text"
-                        onChange={handleChange}
-                    />
-                    <span className="text text-danger">{formError.name}</span>
-                    <TextField
-                        margin="normal" required fullWidth name="emailId" id="emailId" label="Email Id" aria-required
-                        type="email"
-                        onChange={handleChange}
-                    />
-                    <span className="text text-danger">{formError.emailId}</span>
-                    <TextField
-                        margin="normal" required fullWidth name="contactNo" id="contactNo" label="Contact No"
-                        aria-required
-                        type="number"
-                        onChange={handleChange}
-                    />
-                    <span className="text text-danger">{formError.contactNo}</span>
-                    <TextField
-                        margin='normal' required fullWidth name="password" id="password" label="Password" aria-required
-                        type="password"
-                        onChange={handleChange}
-                    />
-                    <span className="text text-danger">{formError.password}</span>
-                    <TextField
-                        margin="normal" required fullWidth name="cnfPassword" id="cnfPassword" label="Confirm Password" aria-required
-                        type="text"
-                        onChange={handlePassword}
-                    />
-                    {formError.cnfPassword ? <span className="text text-danger">{formError.cnfPassword}</span>
-                        : null}
 
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        disabled={!formValid.button}
-                    >
-                        Register
-                    </Button>
-                    {/* {messages.successMessage?<span className='text-success'>User Registered Successfully {messages.successMessage}</span>:null} */}
-                <span className='text-danger'>{messages.errorMessage}</span>
-                </form>
-               
-            </div>
+            <section id="registerPage" >
+                <div className="col-md-4 offset-6 " >
+                    <form className="form bg-light shadow p-4 mb-4 bg-white rounded-lg" onSubmit={handleSubmit}>
+                        <h1 style={{ fontFamily: 'cursive' }}>Sign Up</h1>
+                        <TextField
+                            margin="normal" required fullWidth name="name" id="name" label="Name" aria-required
+                            type="text"
+                            onChange={handleChange}
+                        />
+                        <span className="text text-danger">{formError.name}</span>
+                        <TextField
+                            margin="normal" required fullWidth name="emailId" id="emailId" label="Email Id" aria-required
+                            type="email"
+                            onChange={handleChange}
+                        />
+                        <span className="text text-danger">{formError.emailId}</span>
+                        <TextField
+                            margin="normal" required fullWidth name="contactNo" id="contactNo" label="Contact No"
+                            aria-required
+                            type="number"
+                            onChange={handleChange}
+                        />
+                        <span className="text text-danger">{formError.contactNo}</span>
+                        <TextField
+                            margin='normal' required fullWidth name="password" id="password" label="Password" aria-required
+                            type="password"
+                            onChange={handleChange}
+                        />
+                        <span className="text text-danger">{formError.password}</span>
+                        <TextField
+                            margin="normal" required fullWidth name="cnfPassword" id="cnfPassword" label="Confirm Password" aria-required
+                            type="text"
+                            onChange={handlePassword}
+                        />
+                        {formError.cnfPassword ? <span className="text text-danger">{formError.cnfPassword}</span>
+                            : null}
 
-        </section>
-    )
-}
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            disabled={!formValid.button}
+                        >
+                            Register
+                        </Button>
+                        {/* {messages.successMessage?<span className='text-success'>User Registered Successfully {messages.successMessage}</span>:null} */}
+                        <span className='text-danger'>{messages.errorMessage}</span>
+                    </form>
+
+                </div>
+
+            </section>
+        )
+    }
 }

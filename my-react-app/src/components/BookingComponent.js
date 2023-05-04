@@ -98,11 +98,17 @@ export default function BookingComponent(props) {
 
 
     let calculateCharges = () => {
-        if (selectedPackage.availability < bookForm.noOfTravelers) {
+        // console.log(selectedPackage.availability);
+        if (selectedPackage.availability == "0") {
+            let msg = "Sorry this trip is full!!!..."
+            updateFormErrorMessages({ ...formErrorMessages, errorMsg: msg })
+        }
+        else if (selectedPackage.availability < bookForm.noOfTravelers) {
             let msg = "Sorry we can only accomodate" + selectedPackage.availability + "Passengers"
             updateFormErrorMessages({ ...formErrorMessages, errorMsg: msg })
         }
         else {
+            updateFormErrorMessages({ ...formErrorMessages, errorMsg: "" })
             if (bookForm.includeFlight === true) {
                 let bc = selectedPackage.chargesPerPerson * Number(bookForm.noOfTravelers)
                 let total_cost = bc + (Number(bookForm.noOfTravelers) * selectedPackage.flightCharges)
@@ -129,7 +135,6 @@ export default function BookingComponent(props) {
         console.log(sessionStorage.getItem('userId'));
         let postData = {
             userId: sessionStorage.getItem('userId'),
-
             destId: selectedPackage.destinationId,
             destinationName: selectedPackage.name,
             checkInDate: new Date(bookForm.date).toLocaleDateString(),
@@ -138,7 +143,7 @@ export default function BookingComponent(props) {
             totalCharges: totalCost
         }
         axios.post(url + 'booking', postData).then((res) => {
-            console.log(res);
+            //console.log(res);
             updateFormErrorMessages({ ...formErrorMessages, successMsg: res.data })
         }).catch((err) => {
             updateFormErrorMessages({ ...formErrorMessages, errorMsg: err.response.data.message })
@@ -146,13 +151,13 @@ export default function BookingComponent(props) {
     }
     if (formErrorMessages.successMsg) {
         return <React.Fragment>
-            <div className="container">
+            <div className="container bookingSuccess">
                 <div className="row">
-                    <div className="col-md-8 mx-auto">
-                        <h3>Booking Confirmed!!!</h3>
+                    <div >
+                        <h3 className="text-success">Booking Confirmed!!!</h3>
 
-                        <h4>Congratulations Trip planned to {selectedPackage.name}</h4>
-                        <h4> Trip starts on:{bookForm.date}</h4>
+                        <h4 className="text-success">Congratulations Trip planned to {selectedPackage.name}</h4>
+                        <h4> Trip starts on: {bookForm.date}</h4>
                         <h4> Trip ends on: {endDate}</h4>
                     </div>
                 </div>

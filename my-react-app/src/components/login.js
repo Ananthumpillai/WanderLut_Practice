@@ -73,9 +73,11 @@ export default function Login() {
     let loginfun = () => {
         axios.post(url + 'login', form).then((res) => {
             sessionStorage.setItem("login", true)
-
+            // console.log(res.data.userId);
+            sessionStorage.setItem('name',res.data.name)
+            sessionStorage.setItem('userId',res.data.userId)
             updateMessage({ ...message, successMessage: res.data, errorMessage: "" })
-            // window.location.reload()
+            window.location.reload()
          
         }).catch((err) => {
             if (err.response) {

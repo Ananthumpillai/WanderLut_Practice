@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-//mongoose.connect('mongodb://localhost:27017/WanderLustDb')
+// mongoose.connect('mongodb://127.0.0.1:27017/WanderLustDb')
 mongoose.Promise = global.Promise;
 const { Schema } = require("mongoose");
 
@@ -59,8 +59,8 @@ let destinationSchema = mongoose.Schema(defaultSchema, { collection: "Destinatio
 let bookingSchema = mongoose.Schema(booking, { collection: "Bookings" })
 let connection = {}
 
-connection.user = () => {
-    return mongoose.connect('mongodb://localhost:27017/WanderLustDb', { useNewUrlParser: true, useUnifiedTopology: true }).then((res) => {
+ connection.user = () => {
+    return mongoose.connect('mongodb://127.0.0.1:27017/WanderLustDb', { useNewUrlParser: true, useUnifiedTopology: true }).then((res) => {
         return res.model('User', userSchema)
     }).catch((err) => {
         let error = new Error("Could not connect to database")
@@ -71,8 +71,9 @@ connection.user = () => {
 }
 
 connection.hotdeals = () => {
-    return mongoose.connect('mongodb://localhost:27017/WanderLustDb', { useNewUrlParser: true, useUnifiedTopology: true }).then((res) => {
-        return res.model('Hotdeals', packageSchema)
+    return mongoose.connect('mongodb://127.0.0.1:27017/WanderLustDb', { useNewUrlParser: true, useUnifiedTopology: true }).then((res) => {
+    // console.log("inside mongo");   
+    return res.model('Hotdeals', packageSchema)
     }).catch((err) => {
         let error = new Error("Could not connect to database")
         error.status = 500
@@ -82,7 +83,7 @@ connection.hotdeals = () => {
 }
 
 connection.destinations = () => {
-    return mongoose.connect('mongodb://localhost:27017/WanderLustDb', { useNewUrlParser: true, useUnifiedTopology: true }).then((res) => {
+    return mongoose.connect('mongodb://127.0.0.1:27017/WanderLustDb', { useNewUrlParser: true, useUnifiedTopology: true }).then((res) => {
         return res.model('Destinations', destinationSchema)
     }).catch((err) => {
         let error = new Error("Could not connect to database")
@@ -92,7 +93,7 @@ connection.destinations = () => {
 }
 
 connection.bookings = () => {
-    return mongoose.connect('mongodb://localhost:27017/WanderLustDb', { useNewUrlParser: true, useUnifiedTopology: true }).then((res) => {
+    return mongoose.connect('mongodb://127.0.0.1:27017/WanderLustDb', { useNewUrlParser: true, useUnifiedTopology: true }).then((res) => {
         return res.model('Bookings', bookingSchema)
     }).catch((err) => {
         let error = new Error("Could not connect to database")
