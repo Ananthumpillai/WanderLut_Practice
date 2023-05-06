@@ -55,5 +55,25 @@ router.post('/booking', (req, res, next) => {
     })
 })
 
+router.get('/viewBookings/:userId', (req, res, next) => {
+    let userId = req.params.userId
+    bookingService.viewBookings(userId).then((bookings) => {
+        res.send(bookings)
+    }).catch((err) => {
+        next(err)
+    })
+})
+
+router.delete('/deleteBooking/:bId', (req, res, next) => {
+    let bId = req.params.bId
+    bookingService.deleteBooking(bId).then((data) => {
+        res.send(data)
+    }).catch((err) => {
+        next(err)
+    })
+})
+
+
+
 
 module.exports = router

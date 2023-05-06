@@ -66,6 +66,7 @@ export default function RenderPackages(props) {
         updateSelectedPackage(singlePackage)
     }
     let handleChange = (e) => {
+        updateFormErrorMessages({...formErrorMessages,errorMsg:""})
         var name = e.target.name
         var value
 
@@ -134,7 +135,7 @@ export default function RenderPackages(props) {
             updateFormErrorMessages({ ...formErrorMessages, errorMsg: msg })
         }
        else if (selectedPackage.availability < bookForm.noOfTravelers) {
-        let msg = "Sorry we can only accomodate" + selectedPackage.availability + "Passengers"
+        let msg = "Sorry we can only accomodate " + selectedPackage.availability + " more Passengers"
         updateFormErrorMessages({ ...formErrorMessages, errorMsg: msg })
     }
     else {

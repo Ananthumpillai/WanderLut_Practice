@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Fieldset } from 'primereact/fieldset';
 import { Link, Redirect, Router, withRouter } from 'react-router-dom'
 import axios from "axios";
+import Login from "./login";
 
 const url = "http://localhost:1050/"
 export default function BookingComponent(props) {
@@ -46,7 +47,7 @@ export default function BookingComponent(props) {
 
     useEffect(() => {
         calculateCharges()
-        console.log(formErrorMessages);
+        updateFormErrorMessages({ ...formErrorMessages, successMsg: "", errorMsg: "" })
     }, [bookForm])
 
     let validateBookForm = (name, value) => {
@@ -104,7 +105,7 @@ export default function BookingComponent(props) {
             updateFormErrorMessages({ ...formErrorMessages, errorMsg: msg })
         }
         else if (selectedPackage.availability < bookForm.noOfTravelers) {
-            let msg = "Sorry we can only accomodate" + selectedPackage.availability + "Passengers"
+            let msg = "Sorry we can only accomodate " + selectedPackage.availability + " more Passengers"
             updateFormErrorMessages({ ...formErrorMessages, errorMsg: msg })
         }
         else {
@@ -128,11 +129,15 @@ export default function BookingComponent(props) {
     }
 
     if (goBack) {
+
         window.location.reload()
     }
     let handleSubmit = (e) => {
         e.preventDefault()
-        console.log(sessionStorage.getItem('userId'));
+        if (!sessionStorage.getItem('userId')) {
+            alert("Please login to continue")
+           
+        }
         let postData = {
             userId: sessionStorage.getItem('userId'),
             destId: selectedPackage.destinationId,
@@ -230,8 +235,9 @@ export default function BookingComponent(props) {
                         <h5>Your trip ends on {endDate} and you will pay ₹ {totalCost}</h5>
                         <br></br>
                         <button type="submit" className="btn btn-primary" disabled={!cnfButton}>Confirm Booking</button><br /><br />
-                        <button className="btn btn-primary" onClick={() => updateGoBack(true)}>Go Back</button>
+                        <button type="button" className="btn btn-primary" onClick={() => updateGoBack(true)}>Go Back</button>
                     </form>
+
                 </div>
             </div>
         </div>

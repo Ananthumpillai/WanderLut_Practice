@@ -11,6 +11,7 @@ import HotDeals from './components/HotDeals';
 import BookingComponent from './components/BookingComponent';
 import Packages from './components/Packages';
 import FullScreenDemo from './components/demo';
+import ViewBookings from './components/ViewBookings';
 function App() {
 
 
@@ -75,6 +76,7 @@ function App() {
             <Route path='/hotDeals' component={HotDeals}></Route>
             <Route path='/searchPackages/:keyword' component={Packages}></Route>
             <Route path='/book/:destinationId' component={BookingComponent}></Route>
+            <Route exact path='/viewBookings' component={ViewBookings} ></Route>
             {/* <Route  path='*' component={()=><Redirect to='/home'></Redirect>} ></Route> */}
           </Switch>
 

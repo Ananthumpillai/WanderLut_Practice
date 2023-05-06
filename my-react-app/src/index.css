@@ -1,14 +1,23 @@
 body {
-  margin: 0;
+  /* margin: 0; */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
-
+/* min-height: 100vh; */
 }
-
+footer {
+   /* position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;   */
+  padding: 5rem 0;
+margin-top: auto;
+}
 
 
 html {
@@ -20,6 +29,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 /* //doubt verical height */
 #loginPage {
   padding: 10rem 0;
@@ -28,7 +38,7 @@ code {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
-  height: 83vh;                                            
+  height: 83vh;
   background-size: cover;
 
 }
@@ -41,7 +51,7 @@ code {
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
-height: 83vh;
+  height: 83vh;
 }
 
 .package-image {
@@ -74,7 +84,7 @@ height: 83vh;
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
-  
+
 }
 
 .masthead h1 {
@@ -153,24 +163,15 @@ height: 83vh;
   margin: 50px;
 
 }
-.bookingSuccess{
-  
+
+.bookingSuccess {
+
   /* align-items: center;
   text-align: center; */
   display: flex;
   justify-content: center;
   align-items: center;
   height: 82vh;
-  
-}
-footer {
-   /* position: sticky;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: red;
-  color: white;
-  text-align: center;  */
-  padding: 5rem 0;
 
 }
+
