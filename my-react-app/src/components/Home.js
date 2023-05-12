@@ -31,7 +31,7 @@ export default function Home() {
 
 
 
-                        <input type="text" className="form-control-lg flex-fill"
+                        <input type="text" className="form-control-lg flex-fill text-uppercase"
                             placeholder="Where?" onChange={(e) => updadateSearchValue(e.target.value)}
                         ></input> &nbsp;
                         <button className="btn btn-primary btn-lg mx-auto" onClick={handleClick}>Search</button>

@@ -30,7 +30,7 @@ function App() {
         <div>
           {/* {sessionStorage.getItem("login")?updateLogin(true):null} */}
           <nav className='navbar navbar-expand-sm navbar-dark bg-dark'>
-            <a className="navbar-brand font-weight-bolder" href="/"><img src={logo} height='30vw' width='30vw'></img> Wander Lust</a>
+            <a className="navbar-brand font-weight-bolder " href="/"><img src={process.env.PUBLIC_URL + 'assets/lono-final.png'} height='50vh' width='100%'></img></a>
 
             <button className='navbar-toggler' type='button' data-bs-toggle="collapse" data-bs-target="#id">
               <span className='navbar-toggler-icon'></span>

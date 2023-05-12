@@ -142,8 +142,8 @@ export default function BookingComponent(props) {
             userId: sessionStorage.getItem('userId'),
             destId: selectedPackage.destinationId,
             destinationName: selectedPackage.name,
-            checkInDate: new Date(bookForm.date).toLocaleDateString(),
-            checkOutDate: new Date(endDate).toLocaleDateString(),
+            checkInDate: new Date(bookForm.date),
+            checkOutDate: new Date(endDate),
             noOfPersons: bookForm.noOfTravelers,
             totalCharges: totalCost
         }

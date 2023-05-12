@@ -3,6 +3,10 @@ import Home from '../components/Home'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 import { Link, Redirect } from 'react-router-dom';
+
+import { ProgressSpinner } from 'primereact/progressspinner';
+
+import { TextField, Button } from '@mui/material';
 const url = "http://localhost:1050/"
 export default function Login() {
     const [form, updateForm] = useState({
@@ -24,6 +28,8 @@ export default function Login() {
         errorMessage: ""
     })
     const [register, updateRegister] = useState(false)
+
+    const [spinner, updateSpinner] = useState(false)
     let handleChange = (e) => {
         let name = e.target.name
         let value = e.target.value
@@ -32,6 +38,7 @@ export default function Login() {
         updateForm(formCopy)
         validateForm(name, value)
     }
+
     let validateForm = (name, value) => {
         let formErrorCopy = { ...formError }
         let formValidCopy = { ...formValid }
@@ -71,29 +78,39 @@ export default function Login() {
         updateFormValid(formValidCopy)
     }
     let loginfun = () => {
-        axios.post(url + 'login', form).then((res) => {
-            sessionStorage.setItem("login", true)
-            // console.log(res.data.userId);
-            sessionStorage.setItem('name',res.data.name)
-            sessionStorage.setItem('userId',res.data.userId)
-            updateMessage({ ...message, successMessage: res.data, errorMessage: "" })
-            window.location.reload()
-         
-        }).catch((err) => {
-            if (err.response) {
-                updateMessage({ ...message, errorMessage: err.response.data.message, successMessage: "" })
-            }
-            else {
-                updateMessage({ ...message, errorMessage: err.message, successMessage: "" })
-            }
-        })
+        updateSpinner(true)
+        setTimeout(() => {
+
+            axios.post(url + 'login', form).then((res) => {
+                sessionStorage.setItem("login", true)
+                // console.log(res.data.userId);
+                sessionStorage.setItem('name', res.data.name)
+                sessionStorage.setItem('userId', res.data.userId)
+                updateSpinner(false)
+                updateMessage({ ...message, successMessage: res.data.userId, errorMessage: "" })
+                window.location.reload()
+
+
+            }).catch((err) => {
+                if (err.response) {
+                    updateMessage({ ...message, errorMessage: err.response.data.message, successMessage: "" })
+
+                }
+                else {
+                    updateMessage({ ...message, errorMessage: err.message, successMessage: "" })
+                }
+                updateSpinner(false)
+            })
+
+        }, 500)
+
     }
     let formSubmit = (e) => {
         e.preventDefault()
         loginfun()
     }
 
-    if (message.successMessage === true) {
+    if (sessionStorage.getItem('login')) {
 
         return <Redirect to='/home'></Redirect>
     }
@@ -104,43 +121,83 @@ export default function Login() {
 
 
         return <React.Fragment>
+            {spinner ?
 
-            <div  id='loginPage'>
-                <div className='row'>
-                    <div className='col-md-4 offset-md-3 '>
-                        <div className='card '>
-                            <h3 className='card-header text-center'>Login</h3>
-                            <div className='card-body' >
-                                <form className='form' onSubmit={formSubmit}>
-                                    <div className='form-group'>
-                                        <label name="phoneNumber">Phone Number</label>
-                                        <input type='number' placeholder='eg :- +9567808039' name='phoneNumber'
+                <div className='spinner'>
+                    <ProgressSpinner />
+                </div>
+                :
+                <div id='loginPage'>
+                    <div className='row'>
+                        <div className='col-md-3 offset-md-4 '>
+                            <div className='card ' >
+                                <h3 className='card-header text-center' style={{ fontFamily: 'fantasy' }}>Login</h3>
+                                <div className='card-body' >
+                                    <form className='form' onSubmit={formSubmit}>
+                                        <div className='form-group'>
+                                            {/* <label name="phoneNumber">Phone Number</label> */}
+                                            {/* <input type='number' placeholder='eg :- +9567808039' name='phoneNumber'
                                             onChange={handleChange} className='form-control'
-                                        ></input>
-                                        <span className='text-danger'>{formError.phoneNumberError}</span>
-                                    </div>
+                                        ></input> */}
+                                            <TextField
+                                                margin="normal" required fullWidth name="phoneNumber" id="phoneNumber" label="Phone Number"
+                                                type="tel"
+                                                onChange={handleChange}
+                                            />
+                                            <span className='text-danger'>{formError.phoneNumberError}</span>
+                                        </div>
 
-                                    <div className='form-group'>
-                                        <label name="password">Password</label>
+                                        <div className='form-group'>
+                                            {/* <label name="password">Password</label>
                                         <input type='password' placeholder='Please enter your password' name='password'
                                             onChange={handleChange} className='form-control'
-                                        ></input>
-                                        <span className='text-danger'>{formError.passwordError}</span>
-                                    </div>
+                                        ></input> */}
+
+                                            <TextField
+                                                margin="normal" required fullWidth name="password" id="password" label="Password"
+                                                type="text"
+                                                onChange={handleChange}
+                                            />
+
+                                            <span className='text-danger'>{formError.passwordError}</span>
+                                        </div>
 
 
+                                        <br />
+
+
+                                        <Button
+                                            type="submit"
+                                            fullWidth
+                                            variant="contained"
+                                            color="primary"
+                                            disabled={!formValid.buttonValid}
+                                        >
+                                            Submit
+                                        </Button>
+
+                                        {/* <button type='submit' disabled={!formValid.buttonValid} className='btn btn-primary'>Submit</button> */}
+                                    </form>
                                     <br />
-                                    <button type='submit' disabled={!formValid.buttonValid} className='btn btn-primary'>Submit</button>
-                                </form>
-                                <br />
-                                <button className='btn btn-warning btn-block' onClick={() => updateRegister(true)}>Register</button>
-                                <span className='text-danger'><b>{message.errorMessage}</b></span>
+                                    {/* <button className='btn btn-warning btn-block' onClick={() => updateRegister(true)}>Register</button> */}<Button
+                                        type="button"
+                                        fullWidth
+                                        variant="contained"
+                                        color="warning"
+                                        onClick={() => updateRegister(true)}
+                                    >
+                                        Register
+                                    </Button>
+
+
+                                    <span className='text-danger mt-3'><b>{message.errorMessage}</b></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            }
         </React.Fragment>
     }
 }
