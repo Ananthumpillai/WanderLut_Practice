@@ -183,7 +183,7 @@ let defaultBookingForm = () => {
     updateFormErrors(bformError)
     updateFormValid(formValidCopy)
 }
-console.log(typeof endDate);
+//console.log(typeof endDate);
 if (bookPage) {
 
 

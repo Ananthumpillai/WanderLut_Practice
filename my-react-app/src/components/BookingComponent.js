@@ -170,7 +170,7 @@ export default function BookingComponent(props) {
         </React.Fragment>
     }
     return <React.Fragment>
-        <div className="container">
+        <div className="container confirmPage">
             <div className="row">
                 <div className="col-md-7 mt-5">
                     <Fieldset legend="Overview" className="mb-5" toggleable collapsed={true}>

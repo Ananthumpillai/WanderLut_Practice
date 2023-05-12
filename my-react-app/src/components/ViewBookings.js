@@ -72,7 +72,7 @@ Vienna",checkInDate:"2019-1-10",checkOutDate:"2019-1-24",noOfPersons:1 ,totalCha
 
         if (bookings) {
             return bookings.map((data, index) => {
-                {console.log(new Date(data.checkInDate).getTime());}
+                // {console.log(new Date(data.checkInDate).getTime());}
                 return < div className="col-md-10 mx-auto p-3 m-3" >
 
                     <div className="card" key={index}>
@@ -103,9 +103,9 @@ Vienna",checkInDate:"2019-1-10",checkOutDate:"2019-1-24",noOfPersons:1 ,totalCha
 
 
     if (!userId) {
-        return <div className="container">
-            <div className="row text-center">
-                <div className="col-md-9 m-5">
+        return <div className="container viewbookings">
+            <div className="row ">
+                <div >
                     <h2>Please login to view your bookings</h2>
                     <h3><Link to={'/login'}>Click here to Login</Link></h3>
                 </div>
@@ -113,8 +113,8 @@ Vienna",checkInDate:"2019-1-10",checkOutDate:"2019-1-24",noOfPersons:1 ,totalCha
         </div>
     }
     else {
-        return <div className="container mt-5 mb-5">
-            <div className="row ">
+        return <div className="container viewbookings">
+            {/* <div className="row "> */}
              
                   
                  
@@ -122,7 +122,7 @@ Vienna",checkInDate:"2019-1-10",checkOutDate:"2019-1-24",noOfPersons:1 ,totalCha
                 <h2 className="text-danger text-center">{messages.errorMsg}</h2>
 
             </div>
-        </div>
+        // </div>
     }
 
 }

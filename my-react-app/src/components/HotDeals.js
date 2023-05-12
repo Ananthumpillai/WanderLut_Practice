@@ -3,7 +3,7 @@ import axios from 'axios'
 import { TextField, Button, Link as Links } from '@mui/material';
 import BookingComponent from "./BookingComponent";
 import { Redirect, Link } from 'react-router-dom';
-
+import CircularProgress from '@mui/material/CircularProgress';
 // import "primereact/resources/primereact.min.css";
 import { TabView, TabPanel } from 'primereact/tabview';
 // import "primereact/resources/themes/rhea/theme.css"
@@ -16,7 +16,8 @@ import { Sidebar } from 'primereact/sidebar';
 
 
 const url = "http://localhost:1050/"
-// const img="my-react-app\public\"
+
+
 
 export default function HotDeals(props) {
 
@@ -26,6 +27,7 @@ export default function HotDeals(props) {
         successMessage: "",
         errorMessage: ""
     })
+    const [spinner, updateSpinner] = useState(false)
 
     // const [index, updateIndex] = useState(0)
     // const [sidebar, updateSidebar] = useState(false)
@@ -55,43 +57,62 @@ export default function HotDeals(props) {
 
 
     useEffect(() => {
-        fetchData()
+       
+
+      
+            fetchData()
+       
     }, [])
 
     let fetchData = () => {
-        axios.get(url + 'hotDeals').then((res) => {
-            updateData(res.data)
-            updateMessage({ ...messages, errorMessage: "" })
-        }).catch((err) => {
-            console.log("err",err.message);
-            updateData()
-            if(err.response){
-                updateMessage({ ...messages, errorMessage: err.response.data.message })
-            }
-            else{
-                updateMessage({ ...messages, errorMessage: err.message })
-            }
-            
-        })
-    }
+        updateSpinner(true)
+        setTimeout(()=>{
+            axios.get(url + 'hotDeals').then((res) => {
+                updateData(res.data)
+                updateMessage({ ...messages, errorMessage: "" })
+                updateSpinner(false)
+            }).catch((err) => {
+                console.log("err", err.message);
+                updateData()
+                if (err.response) {
+                    updateMessage({ ...messages, errorMessage: err.response.data.message })
+                }
+                else {
+                    updateMessage({ ...messages, errorMessage: err.message })
+                }
+                updateSpinner(false)
     
-    if (data) {
-   
-        return <RenderPackages selectedPackage={data}> </RenderPackages>
+            })
+        },1000)
+        
     }
-    else if (messages.errorMessage) {
-      
-        return <div className="container">
-            <div className="row">
-                <div className="col-md-8 mx-auto">
-                    <h1 className="text-danger p-5">{messages.errorMessage}</h1>
+
+    if (spinner) {
+        return <div className="spinner">
+            <CircularProgress></CircularProgress>
+        </div>
+
+    }
+    else {
+        if (data) {
+
+            return <RenderPackages selectedPackage={data}> </RenderPackages>
+        }
+        else if (messages.errorMessage) {
+
+            return <div className="container">
+                <div className="row">
+                    <div className="col-md-8 mx-auto">
+                        <h1 className="text-danger p-5">{messages.errorMessage}</h1>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     }
 
 
-    
-  
+
+
+
 }
 

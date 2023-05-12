@@ -82,7 +82,7 @@ function App() {
 
         </div>
       </Router>
-      <footer className="bg-black p-5 text-center text-white-50">
+      <footer className="bg-black p-5 ">
         Copyright &copy; www.eta.wanderlust.com 2018
       </footer>
     </div>
