@@ -73,9 +73,9 @@ Vienna",checkInDate:"2019-1-10",checkOutDate:"2019-1-24",noOfPersons:1 ,totalCha
         if (bookings) {
             return bookings.map((data, index) => {
                 // {console.log(new Date(data.checkInDate).getTime());}
-                return < div className="col-md-10 mx-auto p-3 m-3" >
+                return < div className="col-md-10 mx-auto p-3 m-3" key={index} >
 
-                    <div className="card" key={index}>
+                    <div className="card" >
                         <div className="card-header">
                             <h4 className="card-title text-success">Booking Id : {data.bookingId}</h4>
                         </div>

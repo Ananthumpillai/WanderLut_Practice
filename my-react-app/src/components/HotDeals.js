@@ -100,8 +100,8 @@ export default function HotDeals(props) {
         }
         else if (messages.errorMessage) {
 
-            return <div className="container">
-                <div className="row">
+            return <div className="container confirmPage">
+                <div className="row text-center">
                     <div className="col-md-8 mx-auto">
                         <h1 className="text-danger p-5">{messages.errorMessage}</h1>
                     </div>
