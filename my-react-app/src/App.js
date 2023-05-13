@@ -12,20 +12,55 @@ import BookingComponent from './components/BookingComponent';
 import Packages from './components/Packages';
 import FullScreenDemo from './components/demo';
 import ViewBookings from './components/ViewBookings';
+import Slide from '@mui/material/Slide';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="down" ref={ref} {...props} />;
+});
+
+
+
 function App() {
 
 
-
+  const [open, setOpen] = useState(false);
   const [login, updateLogin] = useState(sessionStorage.getItem("login"))
   // console.log(sessionStorage.login);
 
   let handleLogout = () => {
+
     sessionStorage.clear()
     window.location.reload()
   }
 
   return (
     <div>
+      <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        keepMounted
+        // onClose={handleClose}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle>{"Are you sure?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            Once  logged out, you won't be able to book packages or view your bookings
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => (setOpen(false))}>Disagree</Button>
+          <Button onClick={handleLogout} >Agree</Button>
+        </DialogActions>
+      </Dialog>
+
+
+
       <Router>
         <div>
           {/* {sessionStorage.getItem("login")?updateLogin(true):null} */}
@@ -50,18 +85,18 @@ function App() {
                 <li className='nav-item'>
                   <Link className="nav-link" to={'/viewBookings'}>Planned Trips</Link>
                 </li>
-                
+
 
 
                 {login ?
                   <li className='nav-item'>
-                    <button className='btn btn-dark' onClick={handleLogout}>Logout</button>
+                    <button className='btn btn-dark' onClick={() => setOpen(true)}>Logout</button>
                   </li>
                   :
                   <li className='nav-item '>
-                  <Link className="nav-link" to={'/login'}>Login</Link>
-                </li>
-                 }
+                    <Link className="nav-link" to={'/login'}>Login</Link>
+                  </li>
+                }
 
 
               </ul>
@@ -77,7 +112,7 @@ function App() {
             <Route path='/searchPackages/:keyword' component={Packages}></Route>
             <Route path='/book/:destinationId' component={BookingComponent}></Route>
             <Route exact path='/viewBookings' component={ViewBookings} ></Route>
-            {/* <Route  path='*' component={()=><Redirect to='/home'></Redirect>} ></Route> */}
+            <Route path='*' component={() => <Redirect to='/home'></Redirect>} ></Route>
           </Switch>
 
         </div>
