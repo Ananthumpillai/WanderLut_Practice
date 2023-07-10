@@ -204,3 +204,14 @@ code {
 /* .container{
   min-height: calc(100vh - 172px);
 } */
+
+.cardtrans{
+  transition: all 1s;
+animation:trans 1s ease;
+}
+
+@keyframes trans{
+  0%{transform: translateY(0px);}
+  50%{transform: translateY(30px);}
+  100%{transform: translateY(-30px);}
+}
